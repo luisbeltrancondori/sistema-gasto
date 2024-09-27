@@ -22,6 +22,12 @@ class EnsureEmailIsVerified
             return response()->json(['message' => 'Your email address is not verified.'], 409);
         }
 
+        // Check for roles and permissions
+        $user = $request->user();
+        if (!$user->hasRole('admin') && !$user->hasPermissionTo('access_verified_routes')) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         return $next($request);
     }
 }

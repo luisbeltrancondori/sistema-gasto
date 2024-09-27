@@ -19,6 +19,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Check for roles and permissions
+        $user = Auth::user();
+        if (!$user->hasRole('admin') && !$user->hasPermissionTo('login')) {
+            Auth::logout();
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         return response()->noContent();
     }
 
