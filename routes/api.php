@@ -13,43 +13,41 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::controller(AccountController::class)->group(function(){
-    Route::get('/account', 'index');
-    Route::post('/account','store');
-    Route::get('/account/{id}','show');
-    Route::put('/account/{id}','update');
-    Route::delete('/account/{id}','destroy');
+    Route::get('/account', 'index')->middleware('role:admin|user');
+    Route::post('/account','store')->middleware('role:admin');
+    Route::get('/account/{id}','show')->middleware('role:admin|user');
+    Route::put('/account/{id}','update')->middleware('role:admin');
+    Route::delete('/account/{id}','destroy')->middleware('role:admin');
 });
 
 Route::controller(CoinController::class)->group(function(){
-    Route::get('/coin', 'index');
-    Route::post('/coin','store');
-    Route::get('/coin/{id}','show');
-    Route::put('/coin/{id}','update');
-    Route::delete('/coin/{id}','destroy');
+    Route::get('/coin', 'index')->middleware('role:admin|user');
+    Route::post('/coin','store')->middleware('role:admin');
+    Route::get('/coin/{id}','show')->middleware('role:admin|user');
+    Route::put('/coin/{id}','update')->middleware('role:admin');
+    Route::delete('/coin/{id}','destroy')->middleware('role:admin');
 });
 
 Route::controller(CategorieController::class)->group(function(){
-    Route::get('/categorie', 'index');
-    Route::post('/categorie','store');
-    Route::get('/categorie/{id}','show');
-    Route::put('/categorie/{id}','update');
-    Route::delete('/categorie/{id}','destroy');
+    Route::get('/categorie', 'index')->middleware('role:admin|user');
+    Route::post('/categorie','store')->middleware('role:admin');
+    Route::get('/categorie/{id}','show')->middleware('role:admin|user');
+    Route::put('/categorie/{id}','update')->middleware('role:admin');
+    Route::delete('/categorie/{id}','destroy')->middleware('role:admin');
 });
 
 Route::controller(MovementtypeController::class)->group(function(){
-    Route::get('/movimenttype', 'index');
-    Route::post('/movimenttype','store');
-    Route::get('/movimenttype/{id}','show');
-    Route::put('/movimenttype/{id}','update');
-    Route::delete('/movimenttype/{id}','destroy');
+    Route::get('/movimenttype', 'index')->middleware('role:admin|user');
+    Route::post('/movimenttype','store')->middleware('role:admin');
+    Route::get('/movimenttype/{id}','show')->middleware('role:admin|user');
+    Route::put('/movimenttype/{id}','update')->middleware('role:admin');
+    Route::delete('/movimenttype/{id}','destroy')->middleware('role:admin');
 });
 
 Route::controller(MovementController::class)->group(function(){
-    Route::get('/moviment', 'index');
-    Route::post('/moviment','store');
-    Route::get('/moviment/{id}','show');
-    Route::put('/moviment/{id}','update');
-    Route::delete('/moviment/{id}','destroy');
+    Route::get('/moviment', 'index')->middleware('role:admin|user');
+    Route::post('/moviment','store')->middleware('role:admin');
+    Route::get('/moviment/{id}','show')->middleware('role:admin|user');
+    Route::put('/moviment/{id}','update')->middleware('role:admin');
+    Route::delete('/moviment/{id}','destroy')->middleware('role:admin');
 });
-
-
